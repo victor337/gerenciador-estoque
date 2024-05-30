@@ -3,6 +3,6 @@
 
 
 <body>
-  <script src="index.js"></script>
+  <script src="index.js", type="module"></script>
 </body>
 </html>
