@@ -1,14 +1,15 @@
+
+
 async function generateList() {
-  var api = new XMLHttpRequest();
-  api.open("GET", "scripts.php", true);
+  const xhttpr = new XMLHttpRequest();
+   xhttpr.open('GET', 'scripts.php', true);
 
-  api.onload = function () {
+   xhttpr.send();
 
-  }
+  xhttpr.onload = () => {
+    console.log(JSON.parse(xhttpr.responseText));
+  };
 
-  api.send();
-
-  console.log('aosjoasosa');
 
 }
 

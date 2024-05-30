@@ -1,25 +1,26 @@
 <?php
 
-class Product
-{
-  public $name;
-  public $value;
-  public $desc;
+$hostname = 'localhost';
+$dbName = 'gerenciador_estoque';
+$dbUser = 'root';
+$dbPass = '';
 
-  public function __construct($name, $value, $desc)
-  {
-    $this->name = $name;
-    $this->value = $value;
-    $this->desc = $desc;
-  }
+$mySqlConfig = new mysqli($hostname, $dbUser, $dbPass, $dbName);
+
+$products = $mySqlConfig->query("SELECT * from products");
+
+$items = array();
+
+
+
+while($row = mysqli_fetch_array($products)) {
+    $object = new stdClass();
+    $object->name = $row['name'];
+    $object->value = $row['valueItem'];
+    $object->quantity = $row['quantity'];
+    $object->description = $row['description'];
+    $items[] = $object;
 }
-function getProducts()
-{
-  $products = array(
-    Product('Item 1', 12.99, 'Melhor item')
-  );
 
-  return json_encode($products);
-}
 
-getProducts();
+echo json_encode($items);

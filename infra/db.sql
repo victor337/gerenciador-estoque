@@ -1,8 +1,8 @@
-CREATE SCHEMA IF NOT EXISTS `myDb` DEFAULT CHARACTER SET utf8;
-USE `myDb`;
+CREATE SCHEMA IF NOT EXISTS `gerenciador_estoque` DEFAULT CHARACTER SET utf8;
+USE `gerenciador_estoque`;
 
-CREATE TABLE IF NOT EXISTS `myDb`.`products` (
-  `id` VARCHAR NOT NULL,
+CREATE TABLE IF NOT EXISTS `gerenciador_estoque`.`products` (
+  `id` VARCHAR(255) NOT NULL,
   `name` VARCHAR(255) NOT NULL,
   `description` VARCHAR(255) NOT NULL,
   `valueItem` VARCHAR(255) NOT NULL,
@@ -13,8 +13,8 @@ CREATE TABLE IF NOT EXISTS `myDb`.`products` (
 ENGINE = InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS `myDb`.`users` (
-  `id` VARCHAR NOT NULL,
+CREATE TABLE IF NOT EXISTS `gerenciador_estoque`.`users` (
+  `id` VARCHAR(255) NOT NULL,
   `name` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `pass` VARCHAR(255) NOT NULL,
