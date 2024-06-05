@@ -14,3 +14,12 @@ function validateEmail() {
     //Se o teste passar, permite o envio do formulário
     return true;
 }
+
+
+function getProduct(){
+    let inputText = document.getElementById('nameProduct');
+    console.log('nameProduct' + inputText);
+}
+
+
+getProduct();
