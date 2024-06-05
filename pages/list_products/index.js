@@ -1,35 +1,127 @@
-import product from '../../models/product.js';
+async function getProducts() {
+  $.ajax({
+    url: 'get_products.php',
+    method: 'GET',
+    dataType: 'json',
+    data: {
+      name: 'produto 2',
+      description: 'descricao',
+      price: '12',
+      quantity: 1,
+    },
+    success: function(response){
+      var productsList = response;
 
-async function generateList() {
-  const xhttpr = new XMLHttpRequest();
-   xhttpr.open('GET', 'scripts.php', true);
+      const p = document.createElement("p");
+      const textToP = document.createTextNode("Produtos cadastrados");
 
-   xhttpr.send();
+      p.appendChild(textToP);
 
-  xhttpr.onload = () => {
+      document.body.appendChild(p);
 
+      let ul = document.createElement('ul');
 
-    var productsList = JSON.parse(xhttpr.responseText);
+      productsList.forEach(p => {
+        let li = document.createElement('li');
+        li.appendChild((document.createTextNode(p.name)));
+        li.addEventListener('click', function(){
+          let href = '../product_details_page.html';
+          window.location.href = href;
+        }, false);
+        ul.appendChild(li);
+      });
 
-    var products = [];
-
-    productsList.forEach(p => {
-      let newProduct = product(p.name, p.description, p.value, p.quantity);
-      products.push(newProduct);
-    });
-  
-    let ul = document.createElement('ul');
-
-    products.forEach(p => {
-      let li = document.createElement('li');
-      li.appendChild((document.createTextNode(p.name)));
-      ul.appendChild(li);
-    });
-
-    document.body.appendChild(ul);
-  };
-
-
+      document.body.appendChild(ul);  
+    }
+  });
 }
 
-generateList();
+
+async function addProduct(){
+  await $.ajax({
+    url: 'add_product.php',
+    method: 'POST',
+    dataType: 'json',
+    data: {
+      name: 'produto 2',
+      description: 'descricao',
+      price: '12',
+      quantity: 1,
+    }
+  });
+  getProducts();
+}
+
+async function editProduct(){
+  await $.ajax({
+    url: 'edit_product.php',
+    method: 'POST',
+    dataType: 'json',
+    data: {
+      id: id,
+      name: name,
+      description: description,
+      price: price,
+      quantity: quantity,
+    }
+  });
+  getProducts();
+}
+
+async function deleteProduct(id){
+  await $.ajax({
+    url: 'delete_product.php',
+    method: 'POST',
+    dataType: 'json',
+    data: {
+      id: id,
+    }
+  });
+  getProducts();
+}
+
+
+
+async function login(){
+  $.ajax({
+    url: 'login.php',
+    method: 'POST',
+    dataType: 'json',
+    data: {
+      email: 'victorhspb18@gmail.com',
+      pass: '123456',
+    },
+    success: function(response){
+      if(response == 'no_user'){
+        alert('Usuário ou senha inválidos');
+      } else {
+        let user = response[0];
+        alert('Usuário ' + user.name);
+      }
+    },
+    error: function(request, status, error){
+      console.log(request);
+      console.log(status);
+      console.log(error);
+    },
+  });
+}
+
+
+document.getElementById('add-product').onclick = function() {
+  addProduct();
+}
+
+document.getElementById('edit-product').onclick = function() {
+  editProduct();
+}
+
+document.getElementById('delete-product').onclick = function() {
+  deleteProduct('ojaosjkaosas');
+}
+
+document.getElementById('login').onclick = function() {
+  login();
+}
+
+getProducts();

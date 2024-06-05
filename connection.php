@@ -1,9 +1,9 @@
 <?php 
     $hostname = 'localhost';
-    $dbName = 'gerenciador_estoque';
+    $dbName = 'gerenciador-estoque-db';
     $dbUser = 'root';
     $dbPass = '';
     
     $mySqlConfig = new mysqli($hostname, $dbUser, $dbPass, $dbName);
 
-    var_export($mySqlConfig);
+    var_export($mySqlConfig, true);
