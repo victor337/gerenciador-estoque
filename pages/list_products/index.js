@@ -38,37 +38,6 @@ async function getProducts() {
 }
 
 
-async function addProduct(){
-  await $.ajax({
-    url: 'add_product.php',
-    method: 'POST',
-    dataType: 'json',
-    data: {
-      name: 'produto 2',
-      description: 'descricao',
-      price: '12',
-      quantity: 1,
-    }
-  });
-  getProducts();
-}
-
-async function editProduct(){
-  await $.ajax({
-    url: 'edit_product.php',
-    method: 'POST',
-    dataType: 'json',
-    data: {
-      id: id,
-      name: name,
-      description: description,
-      price: price,
-      quantity: quantity,
-    }
-  });
-  getProducts();
-}
-
 async function deleteProduct(id){
   await $.ajax({
     url: 'delete_product.php',
@@ -83,23 +52,8 @@ async function deleteProduct(id){
 
 
 
-
-
-
 document.getElementById('add-product').onclick = function() {
-  addProduct();
-}
-
-document.getElementById('edit-product').onclick = function() {
-  editProduct();
-}
-
-document.getElementById('delete-product').onclick = function() {
-  deleteProduct('ojaosjkaosas');
-}
-
-document.getElementById('login').onclick = function() {
-  login();
+  window.location.href = "../add_product/index.html";
 }
 
 

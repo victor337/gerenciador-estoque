@@ -34,7 +34,7 @@ function login(){
           if(response == 'no_user'){
             alert('Usuário ou senha inválidos');
           } else {
-            window.location.href = "../list_products/list_products_page.html";
+            window.location.href = "../list_products/index.html";
           }
         },
         error: function(request, status, error){
@@ -47,9 +47,11 @@ function login(){
 }
 
 document.getElementById('login-button').onclick = function() {
-    if(validateEmail()){
-        login();
-    } else {
-
-    }
+  if(validateEmail()){
+    login();
   }
+}
+
+document.getElementById('create-user').onclick = function() {
+  window.location.href = '../create_user/index.html';
+}
