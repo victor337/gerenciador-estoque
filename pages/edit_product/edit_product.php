@@ -14,7 +14,7 @@ $sql =
     description = '$description',
     price = '$price',
     quantity = '$quantity' 
-WHERE id = '$id';
+    WHERE id = '$id';
 ";
 
 $products = $mySqlConfig->query($sql);

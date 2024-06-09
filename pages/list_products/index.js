@@ -26,7 +26,7 @@ async function getProducts() {
         let li = document.createElement('li');
         li.appendChild((document.createTextNode(p.name)));
         li.addEventListener('click', function(){
-          let href = '../product_details_page.html';
+          let href = '../edit_product/index.html?productId=' + p.id;
           window.location.href = href;
         }, false);
         ul.appendChild(li);

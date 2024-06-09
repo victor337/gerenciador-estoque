@@ -1,0 +1,15 @@
+<?php 
+
+$name = $_POST['name'];
+$email = $_POST['email'];
+$pass = $_POST['pass'];
+
+$passwordHash = password_hash($pass,  PASSWORD_DEFAULT); 
+
+
+$sql = "INSERT INTO users (id, name, email, pass)
+VALUES (UUID(), '$name', '$email', '$passwordHash')";
+
+$products = $mySqlConfig->query($sql);
+
+echo json_encode('SUCESSO');
