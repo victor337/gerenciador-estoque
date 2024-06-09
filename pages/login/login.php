@@ -29,10 +29,3 @@ if(password_verify($pass, $passHashed)) {
 } else {
     echo json_encode('no_user');
 }
-
-
-
-// $email = $array['email'];
-// $name = $array['name'];
-
-// echo("{'email': {$email},'name': {$name}}");

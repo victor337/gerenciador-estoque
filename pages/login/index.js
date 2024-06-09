@@ -20,8 +20,6 @@ function login(){
     let email = document.getElementById("idemail").value;
     let pass = document.getElementById("idpassword").value;
     
-    console.log(email);
-
     $.ajax({
         url: 'login.php',
         method: 'POST',
@@ -46,12 +44,15 @@ function login(){
 
 }
 
-document.getElementById('login-button').onclick = function() {
-  if(validateEmail()){
-    login();
-  }
-}
 
-document.getElementById('create-user').onclick = function() {
-  window.location.href = '../create_user/index.html';
-}
+window.onload = function(){ 
+  document.getElementById('create-user').onclick = function() {
+    window.location.href = '../create_user/index.html';
+  }
+
+  document.getElementById('login-button').onclick = function() {
+    if(validateEmail()){
+      login();
+    }
+  }
+};

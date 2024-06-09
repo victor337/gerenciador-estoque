@@ -9,7 +9,7 @@ body {
     height: 100vh;
 }
 
-form {
+div {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -22,7 +22,8 @@ input[type="text"],
 input[type="number"],
 input[type="submit"],
 input[type="password"],
-input[type="reset"] {
+input[type="reset"]
+{
     width: 100%;
     padding: 10px;
     margin: 8px 0;
@@ -32,21 +33,19 @@ input[type="reset"] {
 }
 
 input[type="submit"],
-input[type="reset"] {
-    background-color: #4caf50;
+input[type="reset"]
+{
+    background-color: #164618;
     color: white;
     border: none;
     cursor: pointer;
 }
 
-div {
-    text-align: center;
-}
 
 button {
     padding: 10px;
     margin: 8px 0;
-    
+    width: flex;
     box-sizing: border-box;
     border-radius: 4px;
     background-color: #4caf50;

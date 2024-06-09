@@ -15,7 +15,11 @@ async function createUser(){
             pass: pass,
         },
         success: function(response){
-
+            alert('Usuário criado com sucesso');
+            window.location.href = '../login/index.html';
+        },
+        error: function(request, status, erro){
+            alert('Não foi possível criar o usuário');
         }
     });
 }

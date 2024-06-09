@@ -1,5 +1,7 @@
 <?php 
 
+include("../../connection.php");
+
 $name = $_POST['name'];
 $email = $_POST['email'];
 $pass = $_POST['pass'];
@@ -7,8 +9,8 @@ $pass = $_POST['pass'];
 $passwordHash = password_hash($pass,  PASSWORD_DEFAULT); 
 
 
-$sql = "INSERT INTO users (id, name, email, pass)
-VALUES (UUID(), '$name', '$email', '$passwordHash')";
+$sql = "INSERT INTO users (name, email, pass)
+VALUES ('$name', '$email', '$passwordHash')";
 
 $products = $mySqlConfig->query($sql);
 
