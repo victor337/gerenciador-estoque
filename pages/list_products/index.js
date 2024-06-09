@@ -60,3 +60,7 @@ document.getElementById('add-product').onclick = function() {
 
 
 getProducts();
+
+document.getElementById('sair-button').onclick = function() {
+  window.location.href = "../login/index.html";
+}
