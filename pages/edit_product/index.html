@@ -13,24 +13,24 @@
 <body>
     <script language="JavaScript" type="text/javascript" src="../../jquery-3.7.1.min.js"></script>
     <script src="index.js"></script>
-    <div>
+    <div class="form">
         <h2>Editar Produto</h2>
 
             <label for="nomeProduto">Nome</label>
             <input type="text" name="nome" id="name-product" required>
 
-            <label for="descProduto">Email</label>
+            <label for="descProduto">Descrição</label>
             <input type="text" name="produto" id="desc-product" required>
 
             <label for="valorProduto">Valor do produto</label>
-            <input type="text" name="valor" id="price-product"  step="0.01" min="1" placeholder="0.00" required>
+            <input type="number" name="valor" id="price-product"  step="0.01" min="1" placeholder="0.00" required>
 
             <label for="qtdProduto"> Quantidade do produto </label>
-            <input type="text" name="quantidade" id="quantity-product" min="1" placeholder="1" required>
+            <input type="number" name="quantidade" id="quantity-product" min="1" placeholder="1" required>
             
             <input id="save-button" type="submit" value="Salvar">
-        <input type="reset" value="Limpar"/>
-    </div>
+            <input id="delete-button" type="delete" value="Apagar produto"/>
+    </section>
 
 </body>
 </html>

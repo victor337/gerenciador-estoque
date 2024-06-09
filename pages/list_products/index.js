@@ -13,44 +13,46 @@ async function getProducts() {
     success: function(response){
       var productsList = response;
 
-      const p = document.createElement("p");
-      const textToP = document.createTextNode("Produtos cadastrados");
 
-      p.appendChild(textToP);
+      if(productsList.length == 0){
+        const p = document.createElement("p");
+        const textToP = document.createTextNode("Não existe nenhum produto cadastrado");
+        p.appendChild(textToP);
 
-      document.body.appendChild(p);
+        document.body.appendChild(p);
+      } else {
+        productsList.forEach(p => {
+          let div = document.createElement('div');
+          div.className = 'product';
 
-      let ul = document.createElement('ul');
+          let title = document.createElement('h3');
+          title.innerText = p.name;
 
-      productsList.forEach(p => {
-        let li = document.createElement('li');
-        li.appendChild((document.createTextNode(p.name)));
-        li.addEventListener('click', function(){
-          let href = '../edit_product/index.html?productId=' + p.id;
-          window.location.href = href;
-        }, false);
-        ul.appendChild(li);
-      });
+          let desc = document.createElement('label');
+          desc.innerText = p.description;
 
-      document.body.appendChild(ul);  
+          let price = document.createElement('p');
+          price.className = 'product-price';
+          price.innerText = 'R$' + p.value;
+
+          div.appendChild(title);
+          div.appendChild(desc);
+          div.appendChild(price);
+
+
+          div.addEventListener('click', function(){
+            let href = '../edit_product/index.html?productId=' + p.id;
+            window.location.href = href;
+          }, false);
+          document.body.appendChild(div);
+        });
+  
+      }
+
+      
     }
   });
 }
-
-
-async function deleteProduct(id){
-  await $.ajax({
-    url: 'delete_product.php',
-    method: 'POST',
-    dataType: 'json',
-    data: {
-      id: id,
-    }
-  });
-  getProducts();
-}
-
-
 
 document.getElementById('add-product').onclick = function() {
   window.location.href = "../add_product/index.html";

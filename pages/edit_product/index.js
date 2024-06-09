@@ -1,3 +1,5 @@
+let productId = '';
+
 async function editProduct(){
 
   let nameProduct = document.getElementById('name-product').value;
@@ -28,7 +30,7 @@ async function editProduct(){
   });
 }
 
-let productId = '';
+
 
 async function init(){
   let vars = {};
@@ -60,11 +62,34 @@ async function init(){
   });
 }
 
-init();
+async function deleteProduct(){
+  await $.ajax({
+    url: 'delete_product.php',
+    method: 'POST',
+    dataType: 'json',
+    data: {
+      id: productId,
+    },
+    success: function(response){
+      alert('Produto deletado com sucesso');
+      window.location.href = '../list_products/index.html';
+    }
+  });
+}
+
 
 window.onload = function(){ 
   document.getElementById('save-button').onclick = function(){
     editProduct();
   }
+
+  document.getElementById('delete-button').onclick = function(){
+    let value = confirm('Tem certeza que deseja deletar o produto?');
+
+    if(value){
+      deleteProduct();
+    }
+  }
 };
 
+init();

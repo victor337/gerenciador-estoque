@@ -12,7 +12,7 @@ async function addProduct(){
         data: {
             name: nameProduct,
             description: descProduct,
-            price: priceProduct,
+            price: parseFloat(priceProduct.replace(',', '.')),
             quantity: quantityProduct,
         },
         success:  function(response){
@@ -26,11 +26,60 @@ async function addProduct(){
 
 }
 
+function cleanData(){
+    document.getElementById('name-product').value = '';
+    document.getElementById('desc-product').value = '';
+    document.getElementById('price-product').value = '';
+    document.getElementById('quantity-product').value = '';
+}
+
+function validateForm(){
+    let nameProduct = document.getElementById('name-product').value;
+    let descProduct = document.getElementById('desc-product').value;
+    let priceProduct = document.getElementById('price-product').value;
+    let quantityProduct = document.getElementById('quantity-product').value;
+
+    if(nameProduct.length == 0){
+        return 'Preencha o nome do produto';
+    } else if(descProduct.length == 0){
+        return 'Preencha a descrição do produto';
+    } else if(priceProduct.length == 0){
+        return 'Preencha o preço do produto';
+    } else if(quantityProduct.length == 0){
+        return 'Preencha a quantidade do produto';
+    }
+
+    if(parseFloat(priceProduct.replace(',', '.'))){
+        
+    } else {
+        return 'Preencha um preço válido!';
+    }
+
+    if(parseInt(quantityProduct)){
+        
+    } else {
+        return 'Preencha uma quantidade válida!';
+    }
+
+    return null;
+    
+
+}
 
 
 window.onload = function(){ 
     document.getElementById('save-button').onclick = function() {
-        addProduct();
+        let formMessage = validateForm();
+        if(formMessage != null){
+            alert(formMessage);
+        } else {
+            addProduct();
+        }
+        
+    }
+
+    document.getElementById('clean-button').onclick = function() {
+        cleanData();
     }
 };
   
