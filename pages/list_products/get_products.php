@@ -14,6 +14,7 @@ while($row = mysqli_fetch_array($products)) {
     $object->value = $row['price'];
     $object->quantity = $row['quantity'];
     $object->description = $row['description'];
+    $object->updatedAt = $row['updatedAt'];
     $items[] = $object;
 }
 

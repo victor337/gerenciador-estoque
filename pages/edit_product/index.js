@@ -54,6 +54,7 @@ async function init(){
       document.getElementById('desc-product').value = product.description;
       document.getElementById('price-product').value = product.value;
       document.getElementById('quantity-product').value = product.quantity;
+      document.getElementById('edit-date').innerHTML = datestring;
     },
     error: function(){
       alert('Não foi possível buscar o produto');
@@ -77,10 +78,50 @@ async function deleteProduct(){
   });
 }
 
+function validateForm(){
+  let nameProduct = document.getElementById('name-product').value;
+  let descProduct = document.getElementById('desc-product').value;
+  let priceProduct = document.getElementById('price-product').value;
+  let quantityProduct = document.getElementById('quantity-product').value;
+
+  if(nameProduct.length == 0){
+      return 'Preencha o nome do produto';
+  } else if(descProduct.length == 0){
+      return 'Preencha a descrição do produto';
+  } else if(priceProduct.length == 0){
+      return 'Preencha o preço do produto';
+  } else if(quantityProduct.length == 0){
+      return 'Preencha a quantidade do produto';
+  }
+
+  if(parseFloat(priceProduct.replace(',', '.'))){
+      
+  } else {
+      return 'Preencha um preço válido!';
+  }
+
+  if(parseInt(quantityProduct)){
+      
+  } else {
+      return 'Preencha uma quantidade válida!';
+  }
+
+  return null;
+  
+
+}
+
 
 window.onload = function(){ 
   document.getElementById('save-button').onclick = function(){
-    editProduct();
+    let textForm = validateForm();
+
+    if(textForm != null){
+      alert(textForm);
+    } else {
+      editProduct();
+    }
+    
   }
 
   document.getElementById('delete-button').onclick = function(){

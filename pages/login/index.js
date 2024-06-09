@@ -1,24 +1,26 @@
-function validateEmail() {
-    //Obtém o elemento de input de e-mail
-    var emailField = document.getElementById('idemail');
-    //Obtém o valor do campo de e-mail
-    var email = emailField.value;
-    //Define uma expressão regular para validar o formato do e-mail
-    var expectedvalue = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    //Testa o valor do e-mail em relação à expressão regular
+function validateForm() {
+    let emailField = document.getElementById('email');
+    let email = emailField.value;
+    let expectedvalue = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!expectedvalue.test(email)) {
-        //Se o teste falhar, exibe um alerta e impede o envio do formulário
         alert("Por favor, insira um e-mail válido.");
         return false;
     }
-    //Se o teste passar, permite o envio do formulário
+
+    let passField = document.getElementById('pass').value;
+
+    if(passField.length == 0){
+      alert("Por favor, insira uma senha");
+        return false;
+    }
+
     return true;
 }
 
 
 function login(){
-    let email = document.getElementById("idemail").value;
-    let pass = document.getElementById("idpassword").value;
+    let email = document.getElementById("email").value;
+    let pass = document.getElementById("pass").value;
     
     $.ajax({
         url: 'login.php',
@@ -51,7 +53,7 @@ window.onload = function(){
   }
 
   document.getElementById('login-button').onclick = function() {
-    if(validateEmail()){
+    if(validateForm()){
       login();
     }
   }
