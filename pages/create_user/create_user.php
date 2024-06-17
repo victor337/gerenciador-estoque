@@ -12,6 +12,6 @@ $passwordHash = password_hash($pass,  PASSWORD_DEFAULT);
 $sql = "INSERT INTO users (name, email, pass)
 VALUES ('$name', '$email', '$passwordHash')";
 
-$products = $mySqlConfig->query($sql);
+$mySqlConfig->query($sql);
 
 echo json_encode('SUCESSO');
